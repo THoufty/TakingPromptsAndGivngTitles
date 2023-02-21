@@ -1,63 +1,118 @@
-// TODO: Include packages needed for this application
 const inquirer = require("inquirer")
 const fs = require("fs")
-const generateMarkdown = require("./utils/generateMarkdown")
+const Employee = require("./lib/employee")
+const Engineer = require("./lib/engineer")
+const Intern = require("./lib/intern")
+const Manager = require("./lib/Manager")
+const finalDoc = require('./src/fillFile')
+const { run } = require("jest")
+let group = []
 
-// TODO: Create an array of questions for user input
-const questions = ['What is your name?', 'what is your Email?', 'give a brief description of your project.', 'What are the steps required to install your project? Provide a step-by-step description of how to get the development environment running.', 'what instructions are needed to use your project?', 'what kind of license does your project use?','what is your github username?', 'what is the title of your project?'];
-
-// TODO: Create a function to write README file
-// TODO: Create a function to initialize app
-function init() {
+function startMenu() {
   inquirer
     .prompt([
       {
-        type: 'input',
-        message: questions[6],
-        name: "github",
-      },
+        type: 'list',
+        message: 'Build your group! Add a Manager, Engineer, or Intern!',
+        name: 'addList',
+        choices: ['New Manager', 'New Engineer', 'New Intern', 'Done']
+      }
+    ])
+    .then((data) => {
+      console.log(data.addList)
+    })
+
+
+newManager() => {
+ inquirer
+   .prompt([
       {
         type: 'input',
-        message: questions[0],
+        message: `What is the manager's name?`,
         name: "name",
       },
       {
+        type: 'input',
+        message: `What is the manager's id?`,
+        name: "id",
+      },
+      {
         type: "input",
-        message: questions[1],
+        message: `what is the manager's email?`,
         name: "email",
       },
       {
         type: "input",
-        message: questions[2],
-        name: "desc",
-      },
-      {
-        type: "input",
-        message: questions[3],
-        name: "install",
-      },
-      {
-        type: 'input',
-        message: questions[4],
-        name: "usage",
-      },
-      {
-        type: 'input',
-        message: questions[7],
-        name: "title",
-      },
-      {
-        type: "checkbox",
-        message: questions[5],
-        name: "license",
-        choices: ["MIT", "Apache License 2.0", "Eclipse Public License 2.0"],
+        message: `what is the manager's office number?`,
+        name: "officeNumber",
       },
     ])
-
-    .then(response => {
-      let markdownString = generateMarkdown(response)
-      fs.writeFile('team.html', markdownString, (err) => err ? console.error(err) : console.log('Success!'))
+    .then((data) => {
+      console.log(data)
     })
-}
-// Function call to initialize app
-init();
+  }
+
+newEngineer() => {
+  inquirer
+    .prompt([
+         {
+           type: 'input',
+           message: `What is the engineer's name?`,
+           name: "name",
+         },
+         {
+           type: 'input',
+           message: `What is the engineer's id?`,
+           name: "id",
+         },
+         {
+           type: "input",
+           message: `what is the engineer's email?`,
+           name: "email",
+         },
+         {
+          type: "input",
+          message: `what is the engineer's github?`,
+          name: "github",
+        },
+       ])
+       .then((data) => {
+         console.log(data)
+       })
+     }
+
+newIntern() => {
+  inquirer
+    .prompt([
+           {
+             type: 'input',
+             message: `What is the intern's name?`,
+             name: "name",
+           },
+           {
+             type: 'input',
+             message: `What is the intern's id?`,
+             name: "id",
+           },
+           {
+             type: "input",
+             message: `what is the intern's email?`,
+             name: "email",
+           },
+           {
+            type: "input",
+            message: `what is the intern's school?`,
+            name: "school",
+          },
+         ])
+         .then((data) => {
+           console.log(data)
+         })
+       }
+
+makeDoc() => {
+  fs.writeFile('dist/team.html', finalDoc([arrayOfEmployees]), (err) => err ? console.error(err) : console.log('Success!'))
+    })
+  }
+
+startMenu();

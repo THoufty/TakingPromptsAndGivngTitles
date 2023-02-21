@@ -1,9 +1,24 @@
-name id email 
+class Employee {
+    constructor(name, id, email) {
+        this.name = name
+        this.id = id
+        this.email = email
+    }
 
-<div class="card" style="width: 18rem;">
-  <div class="card-body">
-    <h5 class="card-title">Card title</h5>
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-    <a href="#" class="btn btn-primary">Go somewhere</a>
-  </div>
-</div>
+    getName() {
+        return this.name
+    }
+
+    getId(){
+        return this.id
+    }
+
+    getEmail(){
+        retirn this.email
+    }
+
+    getRole(){
+        return Employee
+    }
+}
+    module.exports = Employee
