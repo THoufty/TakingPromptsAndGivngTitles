@@ -9,7 +9,7 @@ describe('employee', () => {
     it('should return an id for any employee entered', () => {
         const id = 1
         const employee = new Employee("tom", id)
-        expect(employee.name).toBe(id)
+        expect(employee.id).toBe(id)
     })
     it('should return an email for any employee entered', () => {
         const email = "me@me.com"
@@ -37,4 +37,3 @@ describe('employee', () => {
         expect(employee.getRole()).toBe(role)
     })
 })
-

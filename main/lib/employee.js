@@ -14,11 +14,11 @@ class Employee {
     }
 
     getEmail(){
-        retirn this.email
+        return this.email
     }
 
     getRole(){
-        return Employee
+        return "Employee"
     }
 }
     module.exports = Employee

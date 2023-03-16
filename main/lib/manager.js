@@ -15,4 +15,4 @@ class Manager extends Employee {
     }
 }
 
-modue.exports = Manager
+module.exports = Manager

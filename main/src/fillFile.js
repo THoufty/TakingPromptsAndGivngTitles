@@ -1,8 +1,10 @@
+const Employee = require("../lib/employee")
+
 function cardFunc(employee) {
   function makeOptions() {
-    if (employee.getrole() == "Manager") return employee.number;
-    if (employee.getrole() == "Engineer") return employee.github;
-    if (employee.getrole() == "Intern") return employee.school;
+    if (employee.getRole() == "Manager") return employee.officeNumber;
+    if (employee.getRole() == "Engineer") return employee.github;
+    if (employee.getRole() == "Intern") return employee.school;
   }
 
   function makeFile() {
@@ -42,9 +44,9 @@ function finalDoc(employees) {
 </head>
 
 <body>
-${Filled}
+${filled}
 </body>
 `;
 }
 
-modules.export = finalDoc;
+module.exports = finalDoc;

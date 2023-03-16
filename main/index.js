@@ -1,11 +1,11 @@
 const inquirer = require("inquirer")
 const fs = require("fs")
-const Employee = require("./lib/employee")
 const Engineer = require("./lib/engineer")
 const Intern = require("./lib/intern")
-const Manager = require("./lib/Manager")
+const Manager = require("./lib/manager")
 const finalDoc = require('./src/fillFile')
 const { run } = require("jest")
+
 let group = []
 
 function startMenu() {
@@ -16,14 +16,26 @@ function startMenu() {
         message: 'Build your group! Add a Manager, Engineer, or Intern!',
         name: 'addList',
         choices: ['New Manager', 'New Engineer', 'New Intern', 'Done']
-      }
+      },
     ])
     .then((data) => {
-      console.log(data.addList)
-    })
+      console.log("look here", data.addList)
+      if (data.addList === 'New Manager') {
+        newManager();
+      }
+      if (data.addList === 'New Engineer') {
+        newEngineer();
+      }
+      if (data.addList === 'New Intern') {
+        newIntern();
+      }
+      if (data.addList === 'Done') {
+        makeDoc();
+      }
+    });
+  }
 
-
-newManager() => {
+function newManager() {
  inquirer
    .prompt([
       {
@@ -48,11 +60,14 @@ newManager() => {
       },
     ])
     .then((data) => {
-      console.log(data)
+      console.log(data);
+      const manager = new Manager(data.name, data.id, data.email, data.officeNumber);
+      group.push(manager);
+      startMenu();
     })
   }
 
-newEngineer() => {
+function newEngineer(){
   inquirer
     .prompt([
          {
@@ -77,11 +92,14 @@ newEngineer() => {
         },
        ])
        .then((data) => {
-         console.log(data)
+        console.log(data);
+        const engineer = new Engineer(data.name, data.id, data.email, data.github);
+        group.push(engineer);
+        startMenu();
        })
      }
 
-newIntern() => {
+function newIntern() {
   inquirer
     .prompt([
            {
@@ -106,13 +124,16 @@ newIntern() => {
           },
          ])
          .then((data) => {
-           console.log(data)
+          console.log(data);
+          const intern = new Intern(data.name, data.id, data.email, data.school);
+          group.push(intern);
+          startMenu();
          })
        }
 
-makeDoc() => {
-  fs.writeFile('dist/team.html', finalDoc([arrayOfEmployees]), (err) => err ? console.error(err) : console.log('Success!'))
-    })
-  }
+function makeDoc() {
+  fs.writeFile('./dist/team.html', finalDoc(group), (err) => err ? console.error(err) : console.log('Success!'))
+    }
+  
 
 startMenu();

@@ -9,7 +9,7 @@ describe("engineer", () => {
     it("should call the function to return the office number for any given engineer", () => {
         const github = 'github.com/thoufty'
         const engineer = new Engineer("blah", 5, "email", github)
-        expect(engineer.getgithub()).toBe(github)
+        expect(engineer.getGithub()).toBe(github)
     })
     it('should return the role of any given employee', () => {
         const role = 'Engineer'
